@@ -1,0 +1,35 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.stripe_app">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        tools:replace="android:label"
+        android:label="Stripe App"
+        android:icon="@mipmap/ic_launcher">
+        
+        <!-- Add the following lines to specify the exported attribute for StripeBrowserLauncherActivity -->
+        <activity android:name="com.stripe.android.payments.StripeBrowserLauncherActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="yourapp" android:host="stripe"/>
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="com.example.stripe_app.MainActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+            android:windowSoftInputMode="adjustResize"
+            tools:replace="android:configChanges">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
